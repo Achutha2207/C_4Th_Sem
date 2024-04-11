@@ -72,8 +72,8 @@ clock_t end_time = clock();
 
 double final_time = ((double)(end_time-start_time))/CLOCKS_PER_SEC;
 
-// printf("Time required for binary search %.fµs\n",final_time*1000000);
-// printf("Number Of Steps Required %.f\n",log2(n));
+ printf("Time required for binary search %.fµs\n",final_time*1000000);
+ printf("Number Of Steps Required %.f\n",log2(n));
 
 
 }
