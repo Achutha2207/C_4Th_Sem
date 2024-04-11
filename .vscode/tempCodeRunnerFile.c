@@ -1,0 +1,1 @@
+printf("Number Of Steps Reqired %.f\n",log2(n))

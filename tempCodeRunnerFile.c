@@ -1,1 +1,0 @@
-printf("Number Of Steps Reqired %.3f\n",log2(n));
