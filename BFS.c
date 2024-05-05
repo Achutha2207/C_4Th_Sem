@@ -4,18 +4,18 @@
 void bfs(int a[10][10] , int n , int source){
 	int s[10] , q[10] , f=0,r=-1,t,v;
 
-	for(v=0;v<n;v++){
+	for(v=1;v<=n;v++){
 		s[v]=0;}
 	q[++r]=source;
 	s[source]=1;
 
 	while(f<=r){
 		t=q[f++];
-			for(v=0;v<n;v++){
-				if(a[t][v]==1&&s[v]==0){
-					q[++r]=v;
-					printf("The BFS Traversal Is %d %d \n " , f , v);
-					s[v]=1;}}}}
+		for(v=1;v<=n;v++){
+			if(a[t-1][v-1]==1&&s[v]==0){
+				q[++r]=v;
+				printf("The BFS Traversal Is %d \n " , v);
+				s[v]=1;}}}}
 void main(){
 	int a[10][10] , n , i , j , s;
 
@@ -28,9 +28,9 @@ void main(){
 	
 	printf("Enter The Matrix Representation\n");
 
-	for(i=0;i<n;i++){
-		for(j=0;j<n;j++){
-			scanf("%d",&a[i][j]);}}
+	for(i=1;i<=n;i++){
+		for(j=1;j<=n;j++){
+			scanf("%d",&a[i-1][j-1]);}}
 
 	printf("Enter The Source City\n");
 	scanf("%d",&s);
