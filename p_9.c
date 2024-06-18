@@ -1,4 +1,4 @@
-#include<stdio.h>
+i#include<stdio.h>
 #include<time.h>
 double clk;
 clock_t starttime,endtime;

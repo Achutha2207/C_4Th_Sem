@@ -6,24 +6,24 @@
 int *a  , n,l,r,left,right;
 void heap_sort(int a[]){
 	int k=1;
-	 left=2*k;
+	left=2*k;
 	right=l+1;
 	int x=1;
 	while(a[k]<a[left]||a[k]<a[right]&&x!=n/2){
-		
+
 		l=2*x;
 		r=l+1;
 		if(a[x]<a[l]){
-		int z=a[x];
-		a[x]=a[l];
-		a[l]=z;}
+			int z=a[x];
+			a[x]=a[l];
+			a[l]=z;}
 		if(a[x]<a[r]){
 			int y = a[x];
 			a[x]=a[r];
-		        a[r]=y;}
+			a[r]=y;}
 		x++;
 
-		
+
 	}}
 
 
@@ -42,11 +42,11 @@ void  main(){int r;
 
 	else{
 
-	printf("The Random Elements Are\n");
-	for(int i = 1 ; i< n+1 ; i++){
-		a[i]=rand()%100;
-		printf("%d\t",a[i]);}
-	printf("\n");}
+		printf("The Random Elements Are\n");
+		for(int i = 1 ; i< n+1 ; i++){
+			a[i]=rand()%100;
+			printf("%d\t",a[i]);}
+		printf("\n");}
 
 	clock_t s , e ;
 	double t ;
