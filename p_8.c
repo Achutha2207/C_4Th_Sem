@@ -1,60 +1,48 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define SIZE 500
+int table[SIZE];
 
-#define MAX 500
-int t[MAX];
+void shifttable(char p[]){
+	int i, m ;
 
-void shifttable(char p[]) {
-	    int i, j, m;
-	        m = strlen(p);
-		    for (i = 0; i < MAX; i++) 
-			            t[i] = m;
-		        for (j = 0; j < m - 1; j++) 
-				        t[(unsigned char)p[j]] = m - 1 - j;
+	m=strlen(p);
+
+	for(i = 0 ; i < SIZE ; i++)
+		table[i]=m;
+
+	for(int j=0;j<m-1;j++)
+		table[p[j]]=m-1-j;
 }
 
-int horspool(char src[], char p[]) {
-	    int i, j, k, m, n; 
-	        n = strlen(src);
-		    m = strlen(p);
-		        printf("\nLength of text=%d", n); 
-			    printf("\nLength of pattern=%d", m); 
-			        i = m - 1;
-				    while (i < n) {
-					            k = 0;
-						            while ((k < m) && (p[m - 1 - k] == src[i - k]))
-								                k++;
-							            if (k == m)
-									                return(i - m + 1);
-								            else
-										                i += t[(unsigned char)src[i]];
-									        }
-				        return -1; 
-}
 
-void clear_screen() {
-	    printf("\033[H\033[J");
-}
+int horsepool(char text[100] ,char pattern[25]){
+int m , n , k , i ;
+m=strlen(pattern);
+n=strlen(text);
+i=m-1;
+while(i<n){
+	k=0;
+	while(k<m&&(pattern[m-1-k]==text[i-k])){k++;}
+	if(k==m){
+		return i-m+1;}
+	else{
+		i=i+table[text[i]];
+	}}
+	return -1;}
 
-int main() {
-	    char src[100], p[100]; 
-	        int pos; 
-		    clear_screen(); 
-		        printf("Enter the text in which pattern is to be searched:\n"); 
-			    fgets(src, sizeof(src), stdin);
-			        src[strcspn(src, "\n")] = '\0'; // Remove the newline character
-
-				    printf("Enter the pattern to be searched:\n"); 
-				        fgets(p, sizeof(p), stdin);
-					    p[strcspn(p, "\n")] = '\0'; // Remove the newline character
-
-					        shifttable(p); 
-						    pos = horspool(src, p); 
-						        if (pos >= 0) 
-								        printf("\nThe desired pattern was found starting from position %d", pos + 1);
-							    else 
-								            printf("\nThe pattern was not found in the given text");
-
-							        getchar(); // Wait for a key press
-								    return 0;
-}
+void main(){
+	char text[100], pattern[25];
+	int result;
+	printf("Enter The Text\n");
+	scanf("%s",text);
+	printf("Enter The Pattern\n");
+	scanf("%s",pattern);
+	shifttable(pattern);
+	result = horsepool(text,pattern);
+	if(result==-1){
+		printf("The Pattern Not Found In The Text\n");
+		return ;}
+	else{
+		printf("The Pattern Was Found At %d\n",result+1);}}
