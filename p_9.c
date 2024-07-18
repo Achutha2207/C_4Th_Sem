@@ -29,8 +29,7 @@ void floyd(int n,int W[10][10],int D[10][10])
 	}
 }
 
-void main()
-{
+int main(){
 	int i,j,n,D[10][10],W[10][10];
 	printf("Enter no.of vertices: \n");
 	scanf("%d",&n);
@@ -51,5 +50,5 @@ clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
 		}printf("\n");
 	}
    printf("\nThe run time is %f\n",clk);
-}
+return 0;}
 

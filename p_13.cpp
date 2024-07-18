@@ -34,4 +34,5 @@ int main(){
 		cout<<"The Solution To "<<n<<" Doesn't Exists "<<endl; exit(1);}
 	cout<<"The Solution Of nQueens Problem Is "<<endl;
 	nqueens(1,n);
+	cout<<x<<endl;
 return 0;}
