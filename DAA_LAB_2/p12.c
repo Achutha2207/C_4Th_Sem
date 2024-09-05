@@ -55,7 +55,7 @@ void main()
   endtime=clock();
   printf("\nShortest  distance\n");
   for(i=1;i<=n;i++)
-       printf("\n%d to %d = %d",v,i,dist[i]);
+       printf("%d to %d = %d\n",v,i,dist[i]);printf("\n");
        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
        printf("The time taken is %f\n",clk);
 
