@@ -2,9 +2,8 @@
 
 int count = 0, a[10], target, b[10];
 int n;
-int final=0;
 void subset(int cs, int index, int ts) {
-	final++;
+
     b[index] = 1;
     if ((cs + a[index]) == target) { // Corrected condition to checindex if current sum matches desired sum
         printf("\n Subset solution = %d\n", ++count);
@@ -44,7 +43,6 @@ int main() {
             printf("No solution exists\n");
         }
     }
-    printf("%d\n",final);
     return 0;
 }
 
