@@ -2,9 +2,7 @@
 #include<math.h>
 #define FALSE 0
 #define TRUE 1
-#include<iostream>
 
-using namespace std;
 int a[20];
 
 int place(int k , int i){
@@ -28,10 +26,11 @@ int nqueens(int k , int n){
 				nqueens(k+1,n);}}} return 0;}
 int main(){
 	int n ;
-	cout<<"Enter The Value Of n"<<endl;
-	cin>>n;
+	printf("Enter The Value Of n ");
+	scanf("%d",&n);
 	if(n<0||n==0||n==2||n==3){
-		cout<<"The Solution To "<<n<<" Doesn't Eaists "<<endl; exit(1);}
-	cout<<"The Solution Of nQueens Problem Is "<<endl;
+		printf("The Solution To %d Doesn't Eaists \n",n);
+		exit(1);}
+	printf("The Solution Of nQueens Problem Is \n");
 	nqueens(1,n);
-return 0;}
+        return 0;}
