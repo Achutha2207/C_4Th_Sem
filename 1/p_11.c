@@ -1,3 +1,4 @@
+//11
 #include <stdio.h>
 
 typedef struct { int u, v, cost; } edge;

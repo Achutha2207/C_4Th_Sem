@@ -1,67 +1,100 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-int *a  , n,l,r,left,right;
-void heap_sort(int a[]){
-	int k=1;
-	left=2*k;
-	right=l+1;
-	int x=1;
-	while(a[k]<a[left]||a[k]<a[right]&&x!=n/2){
+int *a, n;
 
-		l=2*x;
-		r=l+1;
-		if(a[x]<a[l]){
-			int z=a[x];
-			a[x]=a[l];
-			a[l]=z;}
-		if(a[x]<a[r]){
-			int y = a[x];
-			a[x]=a[r];
-			a[r]=y;}
-		x++;
+void heapify(int a[], int n, int i) {
+    int largest = i; // Initialize largest as root
+    int left = 2 * i; // left child
+    int right = 2 * i + 1; // right child
 
+    // If left child is larger than root
+    if (left <= n && a[left] > a[largest])
+        largest = left;
 
-	}}
+    // If right child is larger than largest so far
+    if (right <= n && a[right] > a[largest])
+        largest = right;
 
+    // If largest is not root
+    if (largest != i) {
+        int temp = a[i];
+        a[i] = a[largest];
+        a[largest] = temp;
 
-void  main(){int r;
+        // Recursively heapify the affected sub-tree
+        heapify(a, n, largest);
+    }
+}
 
-	printf("Enter The Value Of n\n");
-	scanf("%d",&n);
+void heap_sort(int a[], int n) {
+    // Build heap (rearrange array)
+    for (int i = n / 2; i >= 1; i--)
+        heapify(a, n, i);
 
-	a=(int *) malloc((n+1)*sizeof(int));
-	printf("Do You  Want To Give The Values Or Randomly Allocate? [0/1]\n");
-	scanf("%d",&r);
-	if(r==0){
-		printf("Enter The Elements\n");
-		for(int i = 1 ; i  < n+1 ; i++){
-			scanf("%d",&a[i]);}}
+    // One by one extract an element from heap
+    for (int i = n; i >= 2; i--) {
+        // Move current root to end
+        int temp = a[1];
+        a[1] = a[i];
+        a[i] = temp;
 
-	else{
+        // Call max heapify on the reduced heap
+        heapify(a, i - 1, 1);
+    }
+}
 
-		printf("The Random Elements Are\n");
-		for(int i = 1 ; i< n+1 ; i++){
-			a[i]=rand()%100;
-			printf("%d\t",a[i]);}
-		printf("\n");}
+int main() {
+    int r;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
 
-	clock_t s , e ;
-	double t ;
+    // Allocate memory for the array
+    a = (int *)malloc((n + 1) * sizeof(int));
+    if (a == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
 
-	s=clock();
+    printf("Do you want to give the values or randomly allocate? [0/1]: ");
+    scanf("%d", &r);
 
-	heap_sort(a);
+    if (r == 0) {
+        printf("Enter the elements:\n");
+        for (int i = 1; i <= n; i++) {
+            scanf("%d", &a[i]);
+        }
+    } else {
+        printf("The random elements are:\n");
+        for (int i = 1; i <= n; i++) {
+            a[i] = rand() % 100;
+            printf("%d\t", a[i]);
+        }
+        printf("\n");
+    }
 
-	e=clock();
+    clock_t s, e;
+    double t;
 
-	t=(double)(e-s)/CLOCKS_PER_SEC;
+    s = clock();
 
-	printf("Sorted Elements\n");
+    heap_sort(a, n);
 
-	for(int i = 1 ;  i < n+1 ; i++){
-		printf("%d\t",a[i]);}printf("\n");
-	printf("The Time Required To Compute Merge Sort Is %f seconds\n",t);}
+    e = clock();
+
+    t = (double)(e - s) / CLOCKS_PER_SEC;
+
+    printf("Sorted elements:\n");
+    for (int i = 1; i <= n; i++) {
+        printf("%d\t", a[i]);
+    }
+    printf("\n");
+    printf("The time required to compute heap sort is %f seconds\n", t);
+
+    // Free allocated memory
+    free(a);
+
+    return 0;
+}
 
